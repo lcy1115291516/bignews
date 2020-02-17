@@ -1,3 +1,16 @@
+<script src="js/jquery-1.12.4.min.js"></script>
+<!-- 登陆拦截 -->
+<script>
+  $.ajax({
+    url: 'http://localhost:8080/api/v1/admin/user/status',
+    async: false,
+    error: function () {
+      alert('请先登录');
+      window.location = '/admin/login.html';
+    }
+  });
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,7 +65,8 @@
             <div class="input-group">
               <input type="text" name="date" class="form-control" value="2019-05-17" id="dateinput">
               <span class="input-group-btn">
-                <button class="btn btn-default" type="button" onclick="jeDate('#dateinput',{trigger:false,format: 'YYYY-MM-DD'})"><i
+                <button class="btn btn-default" type="button"
+                  onclick="jeDate('#dateinput',{trigger:false,format: 'YYYY-MM-DD'})"><i
                     class="iconfont icon-icondate"></i></button>
               </span>
             </div>
@@ -61,7 +75,7 @@
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">文章内容：</label>
           <div class="col-sm-10">
-                                    <textarea name="content" class="form-control" id="rich_content" placeholder="文章内容">
+            <textarea name="content" class="form-control" id="rich_content" placeholder="文章内容">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda fugiat illo nihil molestias ab. Laborum eius non atque, totam sapiente quae obcaecati assumenda ratione inventore pariatur maiores, qui libero delectus.
                             </textarea>
           </div>
@@ -75,7 +89,7 @@
     </div>
   </div>
 
-  <script src="js/jquery-1.12.4.min.js"></script>
+
   <script src="js/jedate/js/jedate.js"></script>
   <script src="js/tinymce/js/tinymce/tinymce.min.js"></script>
   <script src="js/tinymce/js/tinymce_setup.js"></script>
@@ -83,7 +97,7 @@
 
   <!-- 业务逻辑代码 -->
   <script>
-    
+
   </script>
 </body>
 
