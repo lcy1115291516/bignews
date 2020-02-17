@@ -1,3 +1,14 @@
+<script src="js/jquery-1.12.4.min.js"></script>
+<script>
+  $.ajax({
+    url: 'http://localhost:8080/api/v1/admin/user/status',
+    async: false,
+    error: function () {
+      alert('请先登录');
+      window.location = '/admin/login.html';
+    }
+  });
+</script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,12 +93,13 @@
     <div class="user_center_link">
       <a href="user.html" onclick="setMenu(3,0)" target="main_frame">个人中心</a>
       <img src="images/2.jpg" alt="person">
-      <a href="#"><i class="iconfont icon-tuichu"></i> 退出</a>
+      <a href="#" id="logout"><i class="iconfont icon-tuichu"></i> 退出</a>
     </div>
   </div>
 
   <div class="main" id="main_body">
-    <iframe src="main_count.html" frameborder="0" id="main_frame" name="main_frame" frameborder="0" scrolling="auto"></iframe>
+    <iframe src="main_count.html" frameborder="0" id="main_frame" name="main_frame" frameborder="0"
+      scrolling="auto"></iframe>
   </div>
 
   <!-- 模态框 -->
@@ -95,15 +107,16 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel">温馨提示!</h4>
         </div>
         <div class="modal-body">
           你确定要退出吗?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-          <button type="button" class="btn btn-primary">确定</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="closeModal">关闭</button>
+          <button type="button" class="btn btn-primary" id="sure">确定</button>
         </div>
       </div>
     </div>
@@ -166,7 +179,22 @@
 
   <!-- 业务逻辑代码 -->
   <script>
-
+    // lcy退出登录 start
+    $('#logout').on('click', function () {
+      // 先隐藏再显示
+      $('#myModal').show().fadeTo(200, 1);
+      // 点击关闭按钮,
+      $('#closeModal').on('click', function () {
+        $('#myModal').fadeTo(200, 0, function () {
+          $('#myModal').hide();
+        });
+      });
+      // 点击确定按钮
+      $('#sure').on('click', function () {
+        window.localStorage.removeItem('token');
+        location.href = '/admin/login.html';
+      })
+    })
   </script>
 </body>
 
