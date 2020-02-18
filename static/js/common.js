@@ -79,3 +79,25 @@ $('.search_form form').on('submit', function () {
     location.href = "/search.html?key=" + keys
     return false;
 })
+
+//向服务器发送请求，索要文章分类数据
+$.ajax({
+    type: 'get',
+    url: 'http://localhost:8080/api/v1/index/category',
+    success: function (response) {
+        console.log(response);
+
+        var navTpl = `
+        <li class="up"></li>
+        {{each data}}
+        <li><a href="list.html?categoryID={{$value.id}}">{{$value.name}}</a></li>
+        {{/each}}
+        `;
+        var html = template.render(navTpl, {
+            data: response.data
+        });
+        $('#navBox').html(html);
+        $('#navBoxi').html(html);
+
+    }
+})
