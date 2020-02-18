@@ -101,46 +101,45 @@
       <td class="text-center">{{$value.date}}</td>
       <td class="text-center">{{$value.state}}</td>
       <td class="text-center">
-        <a href="article_edit.html?postId={{$value.id}}" class="btn btn-default btn-xs edit"  data-id="{{$value.id}}">编辑</a>
+        <a href="article_edit.html?postId={{$value.id}}" class="btn btn-default btn-xs edit"
+          data-id="{{$value.id}}">编辑</a>
         <a href="javascript:;" class="btn btn-danger btn-xs delete" data-id="{{$value.id}}">删除</a>
         <!-- deleteTr( 1005 ) -->
       </td>
     </tr>
-{{/each}}
+    {{/each}}
   </script>
 
   <!-- 分页模板 -->
   <script type="text/html" id="pagelist">
-    {{if page>1}}
+
+    <li class="page-item first"><a href="javascript:;" class="page-link" onclick="getpage(1)">首页</a></li>
+    {{if data.page>1}}
     <li class="page-item prev"><a href="javascript:;" class="page-link" onclick="getpage({{data.page-1}})">上一页</a></li>
-    {{else}}
-    <li class="page-item first"  disabled><a href="javascript:;" class="page-link" onclick="getpage(1)">首页</a></li>
-    <li class="page-item prev"  disabled><a href="javascript:;" class="page-link" onclick="getpage({{data.page-1}})">上一页</a></li>
     {{/if}}
-
     <!-- <li class="page-item active"><a href="#" class="page-link">1</a></li> -->
-    
-    {{each display}}
-    <li class="page-item"><a href="javascript:;" class="page-link" onclick="getpage({{$value}})">{{$value}}</a></li>
-    {{/each}}
-    
+    <% for (let i=((data.page-2)<=1?1:(data.page-2));i<=((data.page+2)>=data.pages?data.pages:(data.page+2));i++){ %>
+  <li class="page-item first"><a href="javascript:;" class="page-link" onclick="getpage(<%=i%>)"><%=i%></a></li>
+  <% } %>
+  {{if data.page < data.pages}}
 
-    {{if page < pages}}
-    <li class="page-item next"><a href="javascript:;" class="page-link" onclick="getpage({{data.page-0+1}})">下一页</a></li>
-    {{else}}
-    <li class="page-item next"  disabled><a href="javascript:;" class="page-link" onclick="getpage({{data.page-0+1}})">下一页</a></li>
-    <li class="page-item last" disabled><a href="javascript:;" class="page-link" onclick="getpage({{data.pages}})">尾页</a></li>
-    {{/if}}
+  <li class="page-item next" disabled><a href="javascript:;" class="page-link"
+      onclick="getpage({{data.page-0+1}})">下一页</a></li>
+
+  {{/if}}
+  <li class="page-item last" disabled><a href="javascript:;" class="page-link" onclick="getpage({{data.pages}})">尾页</a>
+  </li>
   </script>
 
   <!-- 分类模板 -->
   <script type="text/html" id="categoryListTpl">
-  <option value="">所有分类</option>
-  <!-- <option value="-1">未分类</option> -->
-  {{each data}}
-  <option value='{{$value.id}}'>{{$value.name}}</option>
-  {{/each}}
+    <option value="">所有分类</option>
+    <!-- <option value="-1">未分类</option> -->
+    {{each data}}
+    <option value='{{$value.id}}'>{{$value.name}}</option>
+    {{/each}}
   </script>
+
 
   <!-- 业务逻辑代码 -->
   <script src="./js/article-list.js"></script>
