@@ -66,28 +66,32 @@
       <td>{{$value.state}}</td>
       <td class="text-center">
         {{if $value.state == '待审核'}}
-        <a href="javascript:;" class="btn btn-warning btn-xs status" data-status="{{$value.state}}" data-id="{{$value.id}}" id="ratify">批准</a>
-        <a href="javascript:;" class="btn btn-warning btn-xs status" data-status="{{$value.state}}" data-id="{{$value.id}}" id="refuse">拒绝</a>
+        <a href="javascript:;" class="btn btn-warning btn-xs status" data-status="{{$value.state}}"
+          data-id="{{$value.id}}" id="ratify">批准</a>
+        <a href="javascript:;" class="btn btn-warning btn-xs status" data-status="{{$value.state}}"
+          data-id="{{$value.id}}" id="refuse">拒绝</a>
         {{/if}}
         {{if $value.state != '待审核'}}
-        <a href="javascript:;" class="btn btn-danger btn-xs delete" data-id="{{$value.id}}">删除</a> 
+        <a href="javascript:;" class="btn btn-danger btn-xs delete" data-id="{{$value.id}}">删除</a>
         {{/if}}
       </td>
     </tr>
     {{/each}}
   </script>
   <script type="text/html" id="pageTpl">
-  <li class="page-item first disabled"><a href="#" class="page-link" onclick="changePage(1)">首页</a></li>
-  {{if page > 1}}
-  <li class="page-item prev disabled"><a href="#" class="page-link" onclick="changePage({{page - 1}})">上一页</a></li>
+    <li class="page-item first"><a href="#" class="page-link" onclick="changePage(1)">首页</a></li>
+    {{if data.page > 1}}
+    <li class="page-item prev"><a href="#" class="page-link" onclick="changePage({{data.page - 1}})">上一页</a></li>
     {{/if}}
-  {{each pages}}
-  <li class="page-item"><a href="#" class="page-link" onclick="changePage({{$value}})">{{$value}}</a></li>
-    {{/each}}
-    {{if pages > page}}
-  <li class="page-item next"><a href="#" class="page-link" onclick="changePage({{page - 0 + 1}})">下一页</a></li>
-{{/if}}
-  <li class="page-item last"><a href="#" class="page-link" onclick="changePage({{totalPage}})">尾页</a></li>
+    <% for (let i=((data.page-2)<=1?1:(data.page-2));i<=((data.page+2)>=data.pages?data.pages:(data.page+2));i++) { %>
+    <li class="page-item {{data.page==i?'active':''}}"><a href="#" class="page-link"
+        onclick="changePage(<%=i%>)"><%=i%></a></li>
+    <% } %>
+
+    {{if data.page < data.pages}}
+    <li class="page-item next"><a href="#" class="page-link" onclick="changePage({{data.page - 0 + 1}})">下一页</a></li>
+    {{/if}}
+    <li class="page-item last"><a href="#" class="page-link" onclick="changePage({{data.pages}})">尾页</a></li>
   </script>
 </body>
 
