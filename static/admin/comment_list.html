@@ -30,33 +30,14 @@
           </tr>
         </thead>
         <tbody id="commentBox">
-          <tr>
-            <td>小周</td>
-            <td>这是一条测试评论，欢迎光临</td>
-            <td>《世界，你好》</td>
-            <td>2017-07-04 12:00:00</td>
-            <td>已批准</td>
-            <td class="text-center">
-              <a href="javascript:;" class="btn btn-warning btn-xs">拒绝</a>
-              <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-            </td>
-          </tr>
+
         </tbody>
       </table>
 
       <div class="row text-center">
-        <ul class="pagination pagination-sm">
-          <li class="page-item first disabled"><a href="#" class="page-link">首页</a></li>
-          <li class="page-item prev disabled"><a href="#" class="page-link">上一页</a></li>
-          <li class="page-item active"><a href="#" class="page-link">1</a></li>
-          <li class="page-item"><a href="#" class="page-link">2</a></li>
-          <li class="page-item"><a href="#" class="page-link">3</a></li>
-          <li class="page-item"><a href="#" class="page-link">4</a></li>
-          <li class="page-item"><a href="#" class="page-link">5</a></li>
-          <li class="page-item"><a href="#" class="page-link">6</a></li>
-          <li class="page-item"><a href="#" class="page-link">7</a></li>
-          <li class="page-item next"><a href="#" class="page-link">下一页</a></li>
-          <li class="page-item last"><a href="#" class="page-link">尾页</a></li>
+        <ul class="pagination pagination-sm" id="pageBox">
+
+
         </ul>
       </div>
 
@@ -66,6 +47,7 @@
   <script src="js/jquery-1.12.4.min.js"></script>
   <script src="../js/template-web.js"></script>
   <script src="./js/jquery.twbsPagination.js"></script>
+  <script src="../admin/js/comment_list.js"></script>
   <script>
     // 设置左侧菜单
     $('#release_btn').click(function () {
@@ -73,8 +55,39 @@
     })
   </script>
 
-  <!-- 业务逻辑代码 -->
-  <script>
+  <!-- 评论列表 -->
+  <script type="text/html" id="commentTpl">
+    {{each data.data}}
+    <tr>
+      <td>{{$value.author}}</td>
+      <td>{{$value.content}}</td>
+      <td>{{$value.title}}</td>
+      <td>{{$value.date}}</td>
+      <td>{{$value.state}}</td>
+      <td class="text-center">
+        {{if $value.state == '待审核'}}
+        <a href="javascript:;" class="btn btn-warning btn-xs status" data-status="{{$value.state}}" data-id="{{$value.id}}" id="ratify">批准</a>
+        <a href="javascript:;" class="btn btn-warning btn-xs status" data-status="{{$value.state}}" data-id="{{$value.id}}" id="refuse">拒绝</a>
+        {{/if}}
+        {{if $value.state != '待审核'}}
+        <a href="javascript:;" class="btn btn-danger btn-xs delete" data-id="{{$value.id}}">删除</a> 
+        {{/if}}
+      </td>
+    </tr>
+    {{/each}}
+  </script>
+  <script type="text/html" id="pageTpl">
+  <li class="page-item first disabled"><a href="#" class="page-link" onclick="changePage(1)">首页</a></li>
+  {{if page > 1}}
+  <li class="page-item prev disabled"><a href="#" class="page-link" onclick="changePage({{page - 1}})">上一页</a></li>
+    {{/if}}
+  {{each pages}}
+  <li class="page-item"><a href="#" class="page-link" onclick="changePage({{$value}})">{{$value}}</a></li>
+    {{/each}}
+    {{if pages > page}}
+  <li class="page-item next"><a href="#" class="page-link" onclick="changePage({{page - 0 + 1}})">下一页</a></li>
+{{/if}}
+  <li class="page-item last"><a href="#" class="page-link" onclick="changePage({{totalPage}})">尾页</a></li>
   </script>
 </body>
 

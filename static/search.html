@@ -5,10 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>大事件-首页</title>
-  <link rel="stylesheet" href="css/reset.css">
+  <title>大事件-列表页</title>
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery.pagination.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+  <script type="text/javascript" src="js/jquery.pagination.min.js"></script>
 </head>
 
 <body>
@@ -54,48 +57,37 @@
   </div>
 
   <div class="main_con clearfix">
-    <div class="left_con">
-      <ul class="focus_list">
-        <li class="first">
-          <a href="#"><img src="images/pic01.jpg" alt=""></a>
-          <p>图片说明</p>
-        </li>
-        <li>
-          <a href="#"><img src="images/pic02.jpg" alt=""></a>
-          <p>图片说明图片说明图片说明图片说明图片说明图片说明图片说明图片说明图片说明</p>
-        </li>
-        <li>
-          <a href="#"><img src="images/pic03.jpg" alt=""></a>
-          <p>图片说明</p>
-        </li>
-        <li>
-          <a href="#"><img src="images/pic05.jpg" alt=""></a>
-          <p>图片说明</p>
-        </li>
-        <li>
-          <a href="#"><img src="images/pic06.jpg" alt=""></a>
-          <p>图片说明</p>
-        </li>
-      </ul>
+    <div class="left_con setfr">
 
-      <div class="common_title">
-        <h3><i class="fa fa-edit"></i> 最新资讯</h3>
-        <a href="#" class="more"><i class="fa fa-angle-double-right"></i></a>
+      <div class="list_title">
+        <h3>科 技</h3>
       </div>
-      <div id="indexTplm"></div>
-      <!-- 最新资讯模板 -->
+      <div id="lasteBox"></div>
+
+      <div id="pagination" class="page"></div>
+      <script>
+        $(function () {
+          $("#pagination").pagination({
+            currentPage: 2,
+            totalPage: 8,
+            callback: function (current) {
+              alert('ok!');
+            }
+          });
+        });
+      </script>
+
     </div>
-    <div class="right_con">
+    <div class="right_con setfl">
       <div class="common_wrap">
         <h3><i class="fa fa-bar-chart"></i> 一周热门排行</h3>
-        <ul class="content_list hotList" id="commentpaihang">
+        <ul class="content_list" id="commentpaihang">
 
         </ul>
       </div>
       <div class="common_wrap">
         <h3><i class="fa fa-commenting-o"></i> 最新评论</h3>
         <ul class="content_list comment_list" id='commentBox'>
-
 
         </ul>
       </div>
@@ -121,34 +113,27 @@
     <p>CopyRight © 2019 深圳大事件信息技术股份有限公司 All Rights Reserved</p>
     <p>电话：0755-****888 粤ICP备*******8号</p>
   </div>
-
-  <script src="./js/jquery-1.12.4.min.js"></script>
-  <script src="./js/template-web.js"></script>
-  <script src="./js/common.js"></script>
-
-  <!-- 最新资讯模板 -->
-  <script type="text/html" id="indexTpl">
+  <!-- <script src="./js/jquery-1.12.4.min.js"></script> -->
+  <!-- 文章列表模块 -->
+  <script type="text/html" id="searchTpl">
     {{each data}}
     <div class="common_news_list">
-      <a href="/article.html?id={{$value.id}}" class="list_pic"><img src="{{$value.cover}}" alt=""></a>
-      <h4><a href="/article.html?id={{$value.id}}">{{$value.title}}</a></h4>
-      <p>{{$value.intro.substr(0,40)}}
+      <a href="article.html?id={{$value.id}}" class="list_pic"><img src="{{$value.cover}}" alt=""></a>
+      <h4><a href="article.html?id={{$value.id}}">{{$value.title}}</a></h4>
+      <p>{{$value.content}}
       </p>
       <div class="new_info">
         <span>标签：{{$value.category}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读(
           {{$value.read}}
-          )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论({{$value.comments}})</span>
-        <b>发布于{{$value.date}}</b>
+          )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( {{$value.comments}})</span>
+        <b>发布于 {{$value.date}}</b>
       </div>
     </div>
     {{/each}}
   </script>
-
-  <script src="js/index.js"></script>
-
-  <!-- index 代码 -->
-  <script>
-  </script>
+  <script src="./js/template-web.js"></script>
+  <script src="./js/common.js"></script>
+  <script src="./js/search.js"></script>
 </body>
 
 </html>
