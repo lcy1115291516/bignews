@@ -23,7 +23,7 @@ $.ajax({
         pagedisplay(result.data.pages);
         pages = result.data.pages;
         result.display = display;
-        console.log(result)
+        // console.log(result)
 
         var html = template('listTpl', result);
         // console.log(html)
@@ -122,4 +122,21 @@ $("#screen").on('submit', function () {
         }
     });
     return false;//阻止表单默认提交行为
-})
+});
+
+
+
+// console.log($('#searchArticle'));
+
+function getUrlParams(name) {
+    var paramsAry = location.search.substr(1).split('&');
+    // 循环数据
+    for (var i = 0; i < paramsAry.length; i++) {
+        var tmp = paramsAry[i].split('=');
+        if (tmp[0] == name) {
+            return tmp[1];
+        }
+    }
+    return -1;
+};
+var key = getUrlParams('key')
