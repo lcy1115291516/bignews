@@ -4,57 +4,79 @@
 // alert(1)
 
 // 发送请求，获取文章列表
-var display = [];
-var pages;
-// Math.ceil(totalCount / num)
-function pagedisplay(page) {
-    for (var i = 1; i <= page; i++) {
-        display.push(i);
-    };
-    return display;
-};
+// var display = [];
+// var pages;
+// // Math.ceil(totalCount / num)
+// function pagedisplay(page) {
+//     for (var i = 1; i <= page; i++) {
+//         display.push(i);
+//     };
+//     return display;
+// };
 // console.log(pagedisplay(200, 10));
 
 $.ajax({
     type: 'get',
     url: 'http://localhost:8080/api/v1/admin/article/query',
-    data: { perpage: 20 },
     success: function (result) {
-        // console.log(result);//对象
+        console.log(result);//对象
         // pagedisplay(result.data.pages)
-        pagedisplay(5)
-
-        result.display = display;
         // console.log(result)
         var html = template('listTpl', result);
         // console.log(html)
         $("#listBox").html(html);
-
-
         var page = template('pagelist', result);
         $("#pageBox").html(page);
     }
 });
-
-
 function getpage(p) {
+    var obj = {};
+    // 获取表单选择内容
+    if ($("#selCategory").val() != "") {
+        obj.type = $("#selCategory").val();
+    };
+    if ($("#selStatus").val() != "") {
+        obj.state = $("#selStatus").val();
+    };
+    obj.page = p;
     $.ajax({
         type: 'get',
         url: 'http://localhost:8080/api/v1/admin/article/query',
-        data: { page: p },
+        data: obj,
         success: function (result) {
-            // console.log(result);//对象
+            console.log(result);//对象
+            // pagedisplay(result.data.pages)
+            // console.log(result)
             var html = template('listTpl', result);
             // console.log(html)
             $("#listBox").html(html);
-
             var page = template('pagelist', result);
             $("#pageBox").html(page);
-
-
         }
     });
-};
+}
+
+// function getpage(p) {
+//     $.ajax({
+//         type: 'get',
+//         url: 'http://localhost:8080/api/v1/admin/article/query',
+//         data: { page: p, prepage: 20 },
+//         success: function (result) {
+//             // console.log(result);//对象
+//             pagedisplay(5)
+//             result.display = display;
+
+//             var html = template('listTpl', result);
+//             // console.log(html)
+//             $("#listBox").html(html);
+
+//             var page = template('pagelist', result);
+//             $("#pageBox").html(page);
+
+
+//         }
+//     });
+// };
 
 
 
@@ -98,10 +120,10 @@ $("#screen").on('submit', function () {
     // 获取表单选择内容
     if ($("#selCategory").val() != "") {
         obj.type = $("#selCategory").val();
-    }
+    };
     if ($("#selStatus").val() != "") {
         obj.state = $("#selStatus").val();
-    }
+    };
     // console.log(obj)
     $.ajax({
         type: 'get',
@@ -119,4 +141,10 @@ $("#screen").on('submit', function () {
         }
     });
     return false;//阻止表单默认提交行为
+});
+
+
+// 搜索功能
+$('#searchForm').on('submit', function () {
+    return false;
 })
