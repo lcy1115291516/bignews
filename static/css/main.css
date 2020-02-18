@@ -116,7 +116,7 @@ body {
     display: block;
 }
 
-.level_two .up {
+.level_two li:nth-child(1) {
     height: 6px;
     background: url('../images/up.png') center center no-repeat;
     border-bottom: 0px;
