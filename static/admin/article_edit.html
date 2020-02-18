@@ -31,61 +31,8 @@
     <div class="common_title">
       文章编辑
     </div>
-    <div class="container-fluid common_con">
-      <form class="form-horizontal article_form">
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">文章标题：</label>
-          <div class="col-sm-10">
-            <input name="title" class="form-control title" id="inputEmail3" value="文章标题文字">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputPassword3" class="col-sm-2 control-label">文章封面：</label>
-          <div class="col-sm-10">
-            <img src="images/pic06.jpg" class="article_cover">
-            <input name="cover" type="file" id="exampleInputFile">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">文章类别：</label>
-          <div class="col-sm-4">
-            <select class="form-control category" name="categoryId">
-              <option>类别一</option>
-              <option>类别二</option>
-              <option>类别三</option>
-              <option selected>类别四</option>
-              <option>类别五</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">发布时间：</label>
-          <div class="col-sm-4">
+    <div class="container-fluid common_con" id="postBox">
 
-            <div class="input-group">
-              <input type="text" name="date" class="form-control" value="2019-05-17" id="dateinput">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button"
-                  onclick="jeDate('#dateinput',{trigger:false,format: 'YYYY-MM-DD'})"><i
-                    class="iconfont icon-icondate"></i></button>
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">文章内容：</label>
-          <div class="col-sm-10">
-            <textarea name="content" class="form-control" id="rich_content" placeholder="文章内容">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda fugiat illo nihil molestias ab. Laborum eius non atque, totam sapiente quae obcaecati assumenda ratione inventore pariatur maiores, qui libero delectus.
-                            </textarea>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-success btn-edit">修改</button>
-          </div>
-        </div>
-      </form>
     </div>
   </div>
 
@@ -95,10 +42,79 @@
   <script src="js/tinymce/js/tinymce_setup.js"></script>
   <script src="./js/template-web.js"></script>
 
-  <!-- 业务逻辑代码 -->
-  <script>
+  <script type="text/html" id="postTpl">
+    <form class="form-horizontal article_form" id="editForm"> 
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">文章标题：</label>
+        <div class="col-sm-10">
+          <input name="title" class="form-control title" id="inputEmail3" value="{{data.title}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label">文章封面：</label>
+        <div class="col-sm-10">
+          <img src="{{data.cover}}" class="article_cover">
+          <input name="cover" type="file" id="exampleInputFile">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">文章类别：</label>
+        <div class="col-sm-4">
+          <select class="form-control category" name="categoryId" id='selCategory'>
+            {{each category}}
+            <option 
+            {{if data.categoryId==$value.id}}
+            selected 
+            {{/if}}
+            value="{{$value.id}}"
+           >{{$value.name}}</option>
+           <!-- <option {{data.categoryId==$value.id  ? 'selected' : '' }}  value="{{$value.id}}">类别{{$value.id}}</option> -->
+            {{/each}}
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">文章类别：</label>
+        <div class="col-sm-4">
+          <select class="form-control category" name="state" id='poststate'>
+            <option value="草稿" {{data.state=='草稿' ? 'selected' : '' }}>草稿</option>
+            <option value="已发布" {{data.state=='已发布' ? 'selected' : '' }}>已发布</option>
+          </select>
+        </div>
+      </div>
+     
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">发布时间：</label>
+        <div class="col-sm-4">
+          <div class="input-group">
+            <input type="text" name="date" class="form-control" value="{{data.date}}" id="dateinput">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button"
+                onclick="jeDate('#dateinput',{trigger:false,format: 'YYYY-MM-DD'})"><i
+                  class="iconfont icon-icondate"></i></button>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">文章内容：</label>
+        <div class="col-sm-10">
+          <textarea name="content" class="form-control" id="rich_content" placeholder="文章内容" value="{{data.content}}">
+            {{data.content}}
+          </textarea>
+        </div>
+      </div>
 
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-success btn-edit">修改</button>
+        </div>
+      </div>
+    </form>
   </script>
+
+  <!-- 业务逻辑代码 -->
+  <script src="./js/article-edit.js"> </script>
 </body>
 
 </html>
