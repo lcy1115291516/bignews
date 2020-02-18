@@ -13,7 +13,7 @@
 
 <body>
   <div class="header">
-    <a href="#" class="logo fl"><img src="images/logo.png" alt="logo"></a>
+    <a href="index.html" class="logo fl"><img src="images/logo.png" alt="logo"></a>
     <div class="search_form fl">
       <input type="text" class="search_txt" placeholder="黑洞照片">
       <button class="search_btn"><i class="fa fa-search"></i></button>
@@ -158,8 +158,8 @@
 
     </div>
     <div class="article_links">
-      上一篇： <a href="#">世界第一台可以玩游戏的冰箱</a><br>
-      下一篇： <a href="#">世界第一个可以玩游戏的马桶、世界上第一个可以玩游戏的茶杯</a>
+      上一篇： <a href="article.html?id={{data.prev.id}}">{{data.prev.title}}</a><br>
+      下一篇： <a href="article.html?id={{data.next.id}}">{{data.next.title}}</a>
     </div>
   </script>
 
