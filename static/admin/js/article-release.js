@@ -37,6 +37,24 @@ $("#exampleInputFile").on('change', function () {
 //     return false;
 // });
 
+
+
+
+// 文章类别
+$.ajax({
+    type: 'get',
+    url: 'http://localhost:8080/api/v1/admin/category/list',
+    success: function (response) {
+        // console.log(response);
+        // 渲染类别模板
+        var html = template('categoryTpl', response);
+        // console.log(html);
+        $(".articleBox").html(html);
+    }
+});
+
+
+
 $("#release").on('click', function () {
     var formdata = new FormData($("#publishForm")[0]);
     formdata.append('state', '已发布');
@@ -58,7 +76,8 @@ function getdata(data) {
         success: function (result) {
             // console.log(result)
             // 刷新页面
-            location.reload();
+            // location.reload();
         }
     })
-}
+};
+
