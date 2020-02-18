@@ -31,7 +31,15 @@ $('#formBox').on('submit', '#userForm', function () {
             console.log(response);
             if (response.code == 200) {
                 alert('修改成功');
-                location.reload();
+
+                function loadUrl(url) {
+                    if (window != top) {
+                        top.location.href = url;
+                        return;
+                    }
+                    window.location.href = url;
+                }
+                loadUrl('index.html')
             } else {
                 alert('修改失败');
             }
