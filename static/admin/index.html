@@ -49,7 +49,7 @@
 
       <ul class="level02">
         <li>
-          <a href="article_list.html" target="main_frame">
+          <a href="article_list.html" target="main_frame" id="postlink">
             <i class="iconfont icon-previewright"></i>
             <span>文章列表</span>
           </a>
@@ -85,9 +85,9 @@
   </div>
 
   <div class="header_bar">
-    <form class="search_form">
-      <input type="text" placeholder="请输入搜索内容">
-      <i class="iconfont icon-search"></i>
+    <form class="search_form" id="searchForm" submit="function(){return false}">
+      <input type="text" placeholder="请输入搜索内容" id="searchArticle" name="key">
+      <i class="iconfont icon-search" id="btn"></i>
     </form>
 
     <div class="user_center_link">
@@ -200,8 +200,6 @@
     $.ajax({
       url: 'http://localhost:8080/api/v1/admin/user/info',
       success: function (response) {
-        console.log(response);
-        console.log(response.data.userPic);
         $('.user_info img').prop('src', response.data.userPic);
         $('.user_center_link img').prop('src', response.data.userPic);
         $('.user_info span').html('欢迎&nbsp;&nbsp;' + response.data.nickname);
@@ -209,7 +207,8 @@
     });
     // lcy 头像和昵称 end
   </script>
-
+  <script src="./js/template-web.js"></script>
+  <script src="./js/common.js"></script>
 </body>
 
 </html>

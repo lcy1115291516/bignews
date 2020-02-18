@@ -17,25 +17,25 @@
     <div class="row spannel_list">
       <div class="col-sm-3 col-xs-6">
         <div class="spannel">
-          <em>10015</em><span>篇</span>
+          <em id="totalArticles"></em><span>篇</span>
           <b>总文章数</b>
         </div>
       </div>
       <div class="col-sm-3 col-xs-6">
         <div class="spannel scolor01">
-          <em>123</em><span>篇</span>
+          <em id="today"></em><span>篇</span>
           <b>日新增文章数</b>
         </div>
       </div>
       <div class="col-sm-3 col-xs-6">
         <div class="spannel scolor02">
-          <em>35</em><span>条</span>
+          <em id="totalComment"></em><span>条</span>
           <b>评论总数</b>
         </div>
       </div>
       <div class="col-sm-3 col-xs-6">
         <div class="spannel scolor03">
-          <em>123</em><span>条</span>
+          <em id="dayComment"></em><span>条</span>
           <b>日新增评论数</b>
         </div>
       </div>
@@ -59,6 +59,7 @@
 
   <script src="js/jquery-1.12.4.min.js"></script>
   <script type="text/javascript" src="js/echarts.min.js"></script>
+  <script src="js/main_count.js"></script>
   <script>
     var oChart = echarts.init(document.getElementById('curve_show'));
     //页面一进来就发送ajax请求,获取真实的月新增文章数
@@ -227,21 +228,22 @@
         radius: ['45%', '60%'],
         center: ['50%', '65%'],
         data: [{
-          value: 300,
-          name: '奇趣事'
-        },
-        {
-          value: 100,
-          name: '会生活'
-        },
-        {
-          value: 260,
-          name: '爱旅行'
-        },
-        {
-          value: 180,
-          name: '趣美味'
-        }
+            value: 300,
+            name: '奇趣事'
+          },
+          {
+            value: 100,
+            name: '会生活'
+          },
+          {
+            value: 260,
+            name: '爱旅行'
+          },
+          {
+            value: 180,
+            name: '趣美味'
+          },
+          
         ]
       }]
     };
@@ -295,61 +297,61 @@
         type: 'value'
       }],
       series: [{
-        name: '奇趣事',
-        type: 'bar',
-        barWidth: 20,
-        itemStyle: {
-          normal: {
-            areaStyle: {
-              type: 'default'
-            },
-            color: '#fd956a'
-          }
+          name: '奇趣事',
+          type: 'bar',
+          barWidth: 20,
+          itemStyle: {
+            normal: {
+              areaStyle: {
+                type: 'default'
+              },
+              color: '#fd956a'
+            }
+          },
+          data: [800, 708, 920, 1090, 1200]
         },
-        data: [800, 708, 920, 1090, 1200]
-      },
-      {
-        name: '会生活',
-        type: 'bar',
-        barWidth: 20,
-        itemStyle: {
-          normal: {
-            areaStyle: {
-              type: 'default'
-            },
-            color: '#2bb6db'
-          }
+        {
+          name: '会生活',
+          type: 'bar',
+          barWidth: 20,
+          itemStyle: {
+            normal: {
+              areaStyle: {
+                type: 'default'
+              },
+              color: '#2bb6db'
+            }
+          },
+          data: [400, 468, 520, 690, 800]
         },
-        data: [400, 468, 520, 690, 800]
-      },
-      {
-        name: '爱旅行',
-        type: 'bar',
-        barWidth: 20,
-        itemStyle: {
-          normal: {
-            areaStyle: {
-              type: 'default'
-            },
-            color: '#13cfd5'
-          }
+        {
+          name: '爱旅行',
+          type: 'bar',
+          barWidth: 20,
+          itemStyle: {
+            normal: {
+              areaStyle: {
+                type: 'default'
+              },
+              color: '#13cfd5'
+            }
+          },
+          data: [500, 668, 520, 790, 900]
         },
-        data: [500, 668, 520, 790, 900]
-      },
-      {
-        name: '趣美味',
-        type: 'bar',
-        barWidth: 20,
-        itemStyle: {
-          normal: {
-            areaStyle: {
-              type: 'default'
-            },
-            color: '#00ce68'
-          }
-        },
-        data: [600, 508, 720, 890, 1000]
-      }
+        {
+          name: '趣美味',
+          type: 'bar',
+          barWidth: 20,
+          itemStyle: {
+            normal: {
+              areaStyle: {
+                type: 'default'
+              },
+              color: '#00ce68'
+            }
+          },
+          data: [600, 508, 720, 890, 1000]
+        }
       ],
       grid: {
         show: true,
@@ -382,7 +384,6 @@
       ]
     };
     oColumn.setOption(oColumnopt)
-
   </script>
 
 </body>

@@ -4,58 +4,69 @@
 // alert(1)
 
 // 发送请求，获取文章列表
-var display = [];
-var pages;
-// Math.ceil(totalCount / num)
-function pagedisplay(page) {
-    for (var i = 1; i <= page; i++) {
-        display.push(i);
-    };
-    return display;
-};
+// var display = [];
+// var pages;
+// // Math.ceil(totalCount / num)
+// function pagedisplay(page) {
+//     for (var i = 1; i <= page; i++) {
+//         display.push(i);
+//     };
+//     return display;
+// };
 // console.log(pagedisplay(200, 10));
-
+var newObj = {};
+var postkey = decodeURI(getUrlParams('key'));
+if (postkey != -1) {
+    newObj.key = postkey;
+}
 $.ajax({
     type: 'get',
     url: 'http://localhost:8080/api/v1/admin/article/query',
-    data: { perpage: 20 },
+    data: newObj,
     success: function (result) {
         // console.log(result);//对象
         // pagedisplay(result.data.pages)
-        pagedisplay(5)
-
-        result.display = display;
         // console.log(result)
+
         var html = template('listTpl', result);
         // console.log(html)
         $("#listBox").html(html);
-
-
         var page = template('pagelist', result);
         $("#pageBox").html(page);
     }
 });
-
-
 function getpage(p) {
+    var obj = {};
+    // 获取表单选择内容
+    if ($("#selCategory").val() != "") {
+        obj.type = $("#selCategory").val();
+    };
+    if ($("#selStatus").val() != "") {
+        obj.state = $("#selStatus").val();
+    };
+    // 获取浏览器地址栏中的key参数
+
+    console.log(postkey)
+    if (postkey != -1) {
+        obj.key = postkey;
+    }
+    obj.page = p;
     $.ajax({
         type: 'get',
         url: 'http://localhost:8080/api/v1/admin/article/query',
-        data: { page: p },
+        data: obj,
         success: function (result) {
-            // console.log(result);//对象
+            console.log(result);//对象
+            // pagedisplay(result.data.pages)
+            // console.log(result)
             var html = template('listTpl', result);
             // console.log(html)
             $("#listBox").html(html);
-
             var page = template('pagelist', result);
             $("#pageBox").html(page);
-
-
         }
     });
-};
-
+}
 
 
 // 文章删除
@@ -74,7 +85,6 @@ $("#listBox").on('click', '.delete', function () {
         })
     }
 });
-
 
 
 
@@ -98,9 +108,12 @@ $("#screen").on('submit', function () {
     // 获取表单选择内容
     if ($("#selCategory").val() != "") {
         obj.type = $("#selCategory").val();
-    }
+    };
     if ($("#selStatus").val() != "") {
         obj.state = $("#selStatus").val();
+    };
+    if (postkey != -1) {
+        obj.key = postkey;
     }
     // console.log(obj)
     $.ajax({
@@ -119,4 +132,30 @@ $("#screen").on('submit', function () {
         }
     });
     return false;//阻止表单默认提交行为
-})
+});
+
+
+
+
+
+
+
+
+
+
+
+// 搜索功能
+// 1-获取关键字信息
+function getUrlParams(name) {
+    var paramsAry = location.search.substr(1).split('&');
+    // console.log(paramsAry)
+    // 循环数据
+    for (var i = 0; i < paramsAry.length; i++) {
+        var tmp = paramsAry[i].split('=');
+        if (tmp[0] == name) {
+            return tmp[1];
+        }
+    }
+    return -1;
+}
+
