@@ -13,7 +13,6 @@ function pagedisplay(page) {
     };
     return display;
 };
-// console.log(pagedisplay(200, 10));
 
 $.ajax({
     type: 'get',
@@ -21,27 +20,27 @@ $.ajax({
     data: { perpage: 20 },
     success: function (result) {
         // console.log(result);//对象
-        // pagedisplay(result.data.pages)
-        pagedisplay(5)
-
+        pagedisplay(result.data.pages);
+        pages = result.data.pages;
         result.display = display;
-        // console.log(result)
+        console.log(result)
+
         var html = template('listTpl', result);
         // console.log(html)
         $("#listBox").html(html);
 
-
+        // 分页模板
         var page = template('pagelist', result);
         $("#pageBox").html(page);
     }
 });
 
-
+// 分页封装函数
 function getpage(p) {
     $.ajax({
         type: 'get',
         url: 'http://localhost:8080/api/v1/admin/article/query',
-        data: { page: p },
+        data: { page: p, perpage: 20 },
         success: function (result) {
             // console.log(result);//对象
             var html = template('listTpl', result);
@@ -55,6 +54,8 @@ function getpage(p) {
         }
     });
 };
+
+
 
 
 
@@ -74,6 +75,8 @@ $("#listBox").on('click', '.delete', function () {
         })
     }
 });
+
+
 
 
 

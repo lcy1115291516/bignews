@@ -111,21 +111,23 @@
 
   <!-- 分页模板 -->
   <script type="text/html" id="pagelist">
-    {{if page=1}}
-    <li class="page-item first disabled"><a href="javascript:;" class="page-link" onclick="getpage(1)">首页</a></li>
-    <li class="page-item prev disabled"><a href="javascript:;" class="page-link" onclick="getpage({{data.page-1}})">上一页</a></li>
-    {{else if page>1}}
+    {{if page>1}}
     <li class="page-item prev"><a href="javascript:;" class="page-link" onclick="getpage({{data.page-1}})">上一页</a></li>
+    {{else}}
+    <li class="page-item first"  disabled><a href="javascript:;" class="page-link" onclick="getpage(1)">首页</a></li>
+    <li class="page-item prev"  disabled><a href="javascript:;" class="page-link" onclick="getpage({{data.page-1}})">上一页</a></li>
     {{/if}}
 
     <!-- <li class="page-item active"><a href="#" class="page-link">1</a></li> -->
+    
     {{each display}}
     <li class="page-item"><a href="javascript:;" class="page-link" onclick="getpage({{$value}})">{{$value}}</a></li>
-   {{/each}}
+    {{/each}}
+    
 
     {{if page < pages}}
     <li class="page-item next"><a href="javascript:;" class="page-link" onclick="getpage({{data.page-0+1}})">下一页</a></li>
-    {{else if page=pages}}
+    {{else}}
     <li class="page-item next"  disabled><a href="javascript:;" class="page-link" onclick="getpage({{data.page-0+1}})">下一页</a></li>
     <li class="page-item last" disabled><a href="javascript:;" class="page-link" onclick="getpage({{data.pages}})">尾页</a></li>
     {{/if}}
