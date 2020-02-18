@@ -113,15 +113,14 @@
   <!-- 分页模板 -->
   <script type="text/html" id="pagelist">
     <li class="page-item first"><a href="javascript:;" class="page-link" onclick="getpage(1)">首页</a></li>
-
-
     {{if data.page>1}}
     <li class="page-item prev"><a href="javascript:;" class="page-link" onclick="getpage({{data.page-1}})">上一页</a></li>
     {{/if}}
 
     <!-- <li class="page-item active"><a href="#" class="page-link">1</a></li> -->
     <% for (let i=((data.page-2)<=1?1:(data.page-2));i<=((data.page+2)>=data.pages?data.pages:(data.page+2));i++){ %>
-    <li class="page-item first"><a href="javascript:;" class="page-link" onclick="getpage(<%=i%>)"><%=i%></a></li>
+    <li class="page-item {{data.page==i?'active':''}}"><a href="javascript:;" class="page-link"
+        onclick="getpage(<%=i%>)"><%=i%></a></li>
     <% } %>
     {{if data.page < data.pages}}
 
