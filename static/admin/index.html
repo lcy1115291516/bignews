@@ -194,7 +194,20 @@
         window.localStorage.removeItem('token');
         location.href = '/admin/login.html';
       })
-    })
+    });
+    // lcy退出登录 end
+    // lcy头像和昵称 start
+    $.ajax({
+      url: 'http://localhost:8080/api/v1/admin/user/info',
+      success: function (response) {
+        console.log(response);
+        console.log(response.data.userPic);
+        $('.user_info img').prop('src', response.data.userPic);
+        $('.user_center_link img').prop('src', response.data.userPic);
+        $('.user_info span').html('欢迎&nbsp;&nbsp;' + response.data.nickname);
+      }
+    });
+    // lcy 头像和昵称 end
   </script>
 
 </body>
