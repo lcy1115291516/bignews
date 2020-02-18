@@ -82,67 +82,8 @@
         <h3><i class="fa fa-edit"></i> 最新资讯</h3>
         <a href="#" class="more"><i class="fa fa-angle-double-right"></i></a>
       </div>
-
-      <div class="common_news_list">
-        <a href="#" class="list_pic"><img src="images/pic09.jpg" alt=""></a>
-        <h4><a href="#">亚马逊金融试水中国？背后却是和华尔街的“金融战争” </a></h4>
-        <p>亚马逊抛弃了中国的买家们，却难以割舍庞大的卖家市场，有消息指出亚马逊中国将针对中国庞大的卖家群体推出一项贷款推荐计划。在连续对印度、墨西哥等新兴市场大力推广线上支付服务后，亚马逊金融试水进军中国市场的信号终于被放出。
-        </p>
-        <div class="new_info">
-          <span>标签：财经&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( 5
-            )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( 10 )</span>
-          <b>发布于 2018-08-30 12:18:58</b>
-        </div>
-      </div>
-
-      <div class="common_news_list">
-        <a href="#" class="list_pic"><img src="images/pic03.jpg" alt=""></a>
-        <h4><a href="#">马斯克的新花样？连接人脑和电脑的初创公司又筹了一笔钱,马斯克的新花样？连接人脑和电脑的初创公司又筹了一笔钱</a></h4>
-        <p>亚马逊抛弃了中国的买家们，却难以割舍庞大的卖家市场，有消息指出亚马逊中国将针对中国庞大的卖家群体推出一项贷款推荐计划。在连续对印度、墨西哥等新兴市场大力推广线上支付服务后，亚马逊金融试水进军中国市场的信号终于被放出。
-        </p>
-        <div class="new_info">
-          <span>标签：财经&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( 5
-            )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( 10 )</span>
-          <b>发布于 2018-08-30 12:18:58</b>
-        </div>
-      </div>
-
-      <div class="common_news_list">
-        <a href="#" class="list_pic"><img src="images/pic05.jpg" alt=""></a>
-        <h4><a href="#">马斯克的新花样？连接人脑和电脑的初创公司又筹了一笔钱</a></h4>
-        <p>亚马逊抛弃了中国的买家们，却难以割舍庞大的卖家市场，有消息指出亚马逊中国将针对中国庞大的卖家群体推出一项贷款推荐计划。在连续对印度、墨西哥等新兴市场大力推广线上支付服务后，亚马逊金融试水进军中国市场的信号终于被放出。
-        </p>
-        <div class="new_info">
-          <span>标签：财经&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( 5
-            )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( 10 )</span>
-          <b>发布于 2018-08-30 12:18:58</b>
-        </div>
-      </div>
-
-      <div class="common_news_list">
-        <a href="#" class="list_pic"><img src="images/pic07.jpg" alt=""></a>
-        <h4><a href="#">马斯克的新花样？连接人脑和电脑的初创公司又筹了一笔钱</a></h4>
-        <p>亚马逊抛弃了中国的买家们，却难以割舍庞大的卖家市场，有消息指出亚马逊中国将针对中国庞大的卖家群体推出一项贷款推荐计划。在连续对印度、墨西哥等新兴市场大力推广线上支付服务后，亚马逊金融试水进军中国市场的信号终于被放出。
-        </p>
-        <div class="new_info">
-          <span>标签：财经&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( 5
-            )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( 10 )</span>
-          <b>发布于 2018-08-30 12:18:58</b>
-        </div>
-      </div>
-
-      <div class="common_news_list">
-        <a href="#" class="list_pic"><img src="images/pic10.jpg" alt=""></a>
-        <h4><a href="#">马斯克的新花样？连接人脑和电脑的初创公司又筹了一笔钱</a></h4>
-        <p>亚马逊抛弃了中国的买家们，却难以割舍庞大的卖家市场，有消息指出亚马逊中国将针对中国庞大的卖家群体推出一项贷款推荐计划。在连续对印度、墨西哥等新兴市场大力推广线上支付服务后，亚马逊金融试水进军中国市场的信号终于被放出。
-        </p>
-        <div class="new_info">
-          <span>标签：财经&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( 5
-            )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( 10 )</span>
-          <b>发布于 2018-08-30 12:18:58</b>
-        </div>
-      </div>
-
+      <div id="indexTplm"></div>
+      <!-- 最新资讯模板 -->
     </div>
     <div class="right_con">
       <div class="common_wrap">
@@ -223,6 +164,25 @@
 
   <script src="./js/jquery-1.12.4.min.js"></script>
   <script src="./js/template-web.js"></script>
+
+  <!-- 最新资讯模板 -->
+  <script type="text/html" id="indexTpl">
+    {{each data}}
+    <div class="common_news_list">
+      <a href="/article.html?id={{$value.id}}" class="list_pic"><img src="{{$value.cover}}" alt=""></a>
+      <h4><a href="/article.html?id={{$value.id}}">{{$value.title}}</a></h4>
+      <p>{{$value.intro.substr(0,40)}}
+      </p>
+      <div class="new_info">
+        <span>标签：{{$value.category}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读( {{$value.read}}
+          )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论({{$value.comments}})</span>
+        <b>发布于{{$value.date}}</b>
+      </div>
+    </div>
+    {{/each}}
+  </script>
+
+  <script src="js/index.js"></script>
 
   <!-- index 代码 -->
   <script>
