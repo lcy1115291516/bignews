@@ -20,5 +20,9 @@ $("#btn").on('click', function () {
         }
     })
 });
+$('#searchForm').on('submit', function () {
+    $("#btn").click();
+    return false;
+})
 
 

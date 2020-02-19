@@ -2,13 +2,14 @@
 $.ajax({
     type: 'get',
     url: 'http://localhost:8080/api/v1/admin/comment/search',
+    data: { perpage: 10 },
     success: function (response) {
         console.log(response);
         // 评论列表数据
         var html = template('commentTpl', response);
         $('#commentBox').html(html);
         // 分页
-        var pageHTML = template('pageTpl', response.data);
+        var pageHTML = template('pageTpl', response);
         console.log(pageHTML);
 
         $('#pageBox').html(pageHTML);
@@ -19,7 +20,8 @@ function changePage(page) {
         type: 'get',
         url: 'http://localhost:8080/api/v1/admin/comment/search',
         data: {
-            page: page
+            page: page,
+            perpage: 10,
         },
         success: function (response) {
             // console.log(response);
@@ -27,7 +29,7 @@ function changePage(page) {
             var html = template('commentTpl', response);
             $('#commentBox').html(html);
             // 分页
-            var pageHTML = template('pageTpl', response.data);
+            var pageHTML = template('pageTpl', response);
             $('#pageBox').html(pageHTML);
         }
     })
