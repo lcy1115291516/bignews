@@ -14,6 +14,7 @@
 //     return display;
 // };
 // console.log(pagedisplay(200, 10));
+console.log(top.$('#searchArticle').val());
 var newObj = {};
 var postkey = decodeURI(getUrlParams('key'));
 if (postkey != -1) {

@@ -46,24 +46,13 @@
 
   <div class="main_con clearfix">
     <div class="left_con setfr">
+      <div id="lastBox">
 
-      <div class="list_title">
-        <h3>科 技</h3>
       </div>
-      <div id="lasteBox"></div>
 
-      <div id="pagination" class="page"></div>
-      <script>
-        $(function () {
-          $("#pagination").pagination({
-            currentPage: 2,
-            totalPage: 8,
-            callback: function (current) {
-              alert('ok!');
-            }
-          });
-        });
-      </script>
+
+
+
 
     </div>
     <div class="right_con setfl">
@@ -104,6 +93,9 @@
   <!-- <script src="./js/jquery-1.12.4.min.js"></script> -->
   <!-- 文章列表模块 -->
   <script type="text/html" id="wenzhang">
+    <div class="list_title">
+      <h3>{{data[0].category}}</h3>
+    </div>
     {{each data}}
     <div class="common_news_list">
       <a href="article.html?id={{$value.id}}" class="list_pic"><img src="{{$value.cover}}" alt=""></a>
@@ -118,9 +110,11 @@
       </div>
     </div>
     {{/each}}
+    <div id="pagination" class="page"></div>
   </script>
   <script src="./js/template-web.js"></script>
   <script src="./js/common.js"></script>
+  <script src="js/list.js"></script>
 </body>
 
 </html>

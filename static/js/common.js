@@ -60,18 +60,7 @@ $.ajax({
     }
 })
 
-// 向服务器端发送请求，索要文章列表数据
-$.ajax({
-    type: 'get',
-    url: 'http://localhost:8080/api/v1/index/search',
-    success: function (response) {
 
-        var html = template('wenzhang', {
-            data: response.data.data
-        });
-        $('#lasteBox').html(html);
-    }
-})
 
 //获取到搜索表单，并为其添加表单提交事件
 $('.search_form form').on('submit', function () {
@@ -100,4 +89,17 @@ $.ajax({
         $('#navBoxi').html(html);
 
     }
-})
+});
+// 获取url参数
+function getUrlParams(name) {
+
+    var paramsAry = location.search.substr(1).split('&');
+    // 循环数据
+    for (var i = 0; i < paramsAry.length; i++) {
+        var tmp = paramsAry[i].split('=');
+        if (tmp[0] == name) {
+            return tmp[1];
+        }
+    }
+    return -1;
+}
