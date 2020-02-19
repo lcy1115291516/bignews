@@ -19,8 +19,8 @@
       <button class="search_btn"><i class="fa fa-search"></i></button>
     </div>
     <div class="link_info fr">
-      <a href="#"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;网站地图</a><a>
-        <a href="#"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;招聘信息</a>
+      <a href="#"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;网站地图</a>
+      <a href="#"><i class="fa fa-angle-right"></i>&nbsp;&nbsp;招聘信息</a>
     </div>
   </div>
 
@@ -130,10 +130,12 @@
 
     </div>
     <div class="article_links">
-
-        上一篇： <a href="#">上</a><br>
-
-        下一篇： <a href="#">下</a>
+      {{if data.prev}}
+      上一篇： <a href="article.html?id={{data.prev.id}}">{{data.prev.title}}</a><br>
+      {{/if}}
+      {{if data.next}}
+      下一篇： <a href="article.html?id={{data.next.id}}">{{data.next.title}}</a>
+      {{/if}}
     </div>
   </script>
 
