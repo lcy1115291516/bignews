@@ -80,7 +80,7 @@ function date(e) {
     // var s = Math.ceil((date - da) % 60);
     // console.log(d + '天' + h + '时');
     // return d + '天' + h + '时'
-    return Math.ceil(d);
+    return Math.ceil(d)
 
 }
 
