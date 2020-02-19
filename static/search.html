@@ -16,7 +16,7 @@
 
 <body>
   <div class="header">
-    <a href="#" class="logo fl"><img src="images/logo.png" alt="logo"></a>
+    <a href="index.html" class="logo fl"><img src="images/logo.png" alt="logo"></a>
     <div class="search_form fl">
       <form><input type="text" class="search_txt" placeholder="黑洞照片" id="search">
         <button class="search_btn"><i class="fa fa-search"></i></button></form>
@@ -95,21 +95,20 @@
   <!-- 文章列表模块 -->
   <script type="text/html" id="searchTpl">
     {{each data}}
-  <div class="common_news_list">
-    <a href="article.html?id={{$value.id}}" class="list_pic"><img src="{{$value.cover}}" alt=""></a>
-    <h4><a href="article.html?id={{$value.id}}">{{$value.title}}</a></h4>
-    <p>{{$value.content}}
-    </p>
-    <div class="new_info">
-      <span>标签：{{$value.category}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读(
-        {{$value.read}}
-        )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( {{$value.comments}})</span>
-      <b>发布于 {{$value.date}}</b>
+    <div class="common_news_list">
+      <a href="article.html?id={{$value.id}}" class="list_pic"><img src="{{$value.cover}}" alt=""></a>
+      <h4><a href="article.html?id={{$value.id}}">{{$value.title}}</a></h4>
+      <p>{{$value.content}}
+      </p>
+      <div class="new_info">
+        <span>标签：{{$value.category}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读(
+          {{$value.read}}
+          )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( {{$value.comments}})</span>
+        <b>发布于 {{$value.date}}</b>
+      </div>
     </div>
-  </div>
-  {{/each}}
-  <div id="pagination" class="page"></div>
-
+    {{/each}}
+    <div id="pagination" class="page"></div>
   </script>
   <script src="./js/template-web.js"></script>
   <script src="./js/common.js"></script>
