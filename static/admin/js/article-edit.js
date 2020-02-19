@@ -28,6 +28,7 @@ $.ajax({
         // console.log(result);//对象
         $.ajax({
             type: 'get',
+            async: false,
             url: 'http://localhost:8080/api/v1/admin/category/list',
             success: function (res) {
                 // console.log(res);
@@ -37,7 +38,8 @@ $.ajax({
                 var html = template('postTpl', result);
                 // console.log(html);
                 $("#postBox").html(html);
-                tinyMCE.activeEditor.setContent(response.data.content)
+                console.log(result.data.content);
+                // tinyMCE.activeEditor.setContent(result.data.content)
             }
         });
 
