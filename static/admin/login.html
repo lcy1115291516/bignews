@@ -44,9 +44,9 @@
           </button>
           <h4 class="modal-title" id="myModalLabel">温馨提示</h4>
         </div>
-        <div class="modal-body"></div>
+        <div class="modal-body">账号或密码错误</div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="closeBtn">
             关闭
           </button>
           <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
@@ -78,13 +78,16 @@
             // 4-跳转到后台首页
             location.href = '/admin/index.html';
           } else {
-            alert('用户名或密码错误');
+            $('#myModal').show().fadeTo(200, 1);
           }
         },
       });
       // 阻止表单的默认提交行为
       return false;
     });
+    $('#closeBtn').on('click', function () {
+      $('#myModal').fadeTo(200, 0).hide();
+    })
   </script>
 </body>
 
