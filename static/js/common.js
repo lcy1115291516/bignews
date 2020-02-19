@@ -8,7 +8,11 @@ $.ajax({
         var commentTpl = `
         {{each data}}
         <li>
+<<<<<<< HEAD
             <span>{{$value.author.substr(0,1)}}</span>
+=======
+            <span>{{$value.author.slice(0,1)}}</span>
+>>>>>>> e05e94b18a0de59e6112e94d6ce2cf3c1e63a8a2
             <b><em>{{$value.author}}</em> {{$value.date}}说:</b>
             <strong>{{$value.intro}}</strong>
           </li>
@@ -27,10 +31,10 @@ $.ajax({
     type: 'get',
     url: 'http://localhost:8080/api/v1/index/attention',
     success: function (response) {
-
+        console.log(response);
         var commentTpl = `
         {{each data}}
-        <li><a href="#">{{$value.intro}}</a></li>
+        <li><a href="article.html?id={{$value.id}}">{{$value.intro}}</a></li>
           {{/each}}
         `;
         var html = template.render(commentTpl, {
@@ -49,7 +53,7 @@ $.ajax({
 
         var commentTpl = `
         {{each data}}
-        <li><span>{{$index+1}}</span><a href="">{{$value.title}}</a></li>
+        <li><span>{{$index+1}}</span><a href="article.html?id={{$value.id}}">{{$value.title}}</a></li>
           {{/each}}
         `;
         var html = template.render(commentTpl, {
@@ -60,18 +64,7 @@ $.ajax({
     }
 })
 
-// 向服务器端发送请求，索要文章列表数据
-$.ajax({
-    type: 'get',
-    url: 'http://localhost:8080/api/v1/index/search',
-    success: function (response) {
 
-        var html = template('wenzhang', {
-            data: response.data.data
-        });
-        $('#lasteBox').html(html);
-    }
-})
 
 //获取到搜索表单，并为其添加表单提交事件
 $('.search_form form').on('submit', function () {
@@ -100,4 +93,17 @@ $.ajax({
         $('#navBoxi').html(html);
 
     }
-})
+});
+// 获取url参数
+function getUrlParams(name) {
+
+    var paramsAry = location.search.substr(1).split('&');
+    // 循环数据
+    for (var i = 0; i < paramsAry.length; i++) {
+        var tmp = paramsAry[i].split('=');
+        if (tmp[0] == name) {
+            return tmp[1];
+        }
+    }
+    return -1;
+}

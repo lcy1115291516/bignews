@@ -14,8 +14,11 @@
 //     return display;
 // };
 // console.log(pagedisplay(200, 10));
+console.log(top.$('#searchArticle').val());
 var newObj = {};
 var postkey = decodeURI(getUrlParams('key'));
+// var nn = top.$('#searchArticle').val();
+// console.log(nn);
 if (postkey != -1) {
     newObj.key = postkey;
 }
@@ -33,6 +36,7 @@ $.ajax({
         $("#listBox").html(html);
         var page = template('pagelist', result);
         $("#pageBox").html(page);
+        parseInt
     }
 });
 function getpage(p) {
@@ -133,14 +137,6 @@ $("#screen").on('submit', function () {
     });
     return false;//阻止表单默认提交行为
 });
-
-
-
-
-
-
-
-
 
 
 
