@@ -48,23 +48,12 @@
   <div class="main_con clearfix">
     <div class="left_con setfr">
 
-      <div class="list_title">
-        <h3>科 技</h3>
+      <div class="list_title" id="searchend">
+        <!-- <h3>科 技</h3> -->
       </div>
       <div id="lasteBox"></div>
 
-      <div id="pagination" class="page"></div>
-      <script>
-        $(function () {
-          $("#pagination").pagination({
-            currentPage: 2,
-            totalPage: 8,
-            callback: function (current) {
-              alert('ok!');
-            }
-          });
-        });
-      </script>
+
 
     </div>
     <div class="right_con setfl">
@@ -106,19 +95,21 @@
   <!-- 文章列表模块 -->
   <script type="text/html" id="searchTpl">
     {{each data}}
-    <div class="common_news_list">
-      <a href="article.html?id={{$value.id}}" class="list_pic"><img src="{{$value.cover}}" alt=""></a>
-      <h4><a href="article.html?id={{$value.id}}">{{$value.title}}</a></h4>
-      <p>{{$value.content}}
-      </p>
-      <div class="new_info">
-        <span>标签：{{$value.category}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读(
-          {{$value.read}}
-          )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( {{$value.comments}})</span>
-        <b>发布于 {{$value.date}}</b>
-      </div>
+  <div class="common_news_list">
+    <a href="article.html?id={{$value.id}}" class="list_pic"><img src="{{$value.cover}}" alt=""></a>
+    <h4><a href="article.html?id={{$value.id}}">{{$value.title}}</a></h4>
+    <p>{{$value.content}}
+    </p>
+    <div class="new_info">
+      <span>标签：{{$value.category}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读(
+        {{$value.read}}
+        )&nbsp;&nbsp;&nbsp;<i class="fa fa-commenting"></i>&nbsp;评论( {{$value.comments}})</span>
+      <b>发布于 {{$value.date}}</b>
     </div>
-    {{/each}}
+  </div>
+  {{/each}}
+  <div id="pagination" class="page"></div>
+
   </script>
   <script src="./js/template-web.js"></script>
   <script src="./js/common.js"></script>
