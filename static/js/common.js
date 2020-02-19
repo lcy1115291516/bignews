@@ -8,7 +8,7 @@ $.ajax({
         var commentTpl = `
         {{each data}}
         <li>
-            <span>中</span>
+            <span>{{$value.author.substr(0,1)}}</span>
             <b><em>{{$value.author}}</em> {{$value.date}}说:</b>
             <strong>{{$value.intro}}</strong>
           </li>
@@ -85,7 +85,7 @@ $.ajax({
     type: 'get',
     url: 'http://localhost:8080/api/v1/index/category',
     success: function (response) {
-        console.log(response);
+        // console.log(response);
 
         var navTpl = `
         <li class="up"></li>

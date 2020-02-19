@@ -44,27 +44,8 @@
 
   <div class="main_con clearfix">
     <div class="left_con">
-      <ul class="focus_list">
-        <li class="first">
-          <a href="#"><img src="images/pic01.jpg" alt=""></a>
-          <p>图片说明</p>
-        </li>
-        <li>
-          <a href="#"><img src="images/pic02.jpg" alt=""></a>
-          <p>图片说明图片说明图片说明图片说明图片说明图片说明图片说明图片说明图片说明</p>
-        </li>
-        <li>
-          <a href="#"><img src="images/pic03.jpg" alt=""></a>
-          <p>图片说明</p>
-        </li>
-        <li>
-          <a href="#"><img src="images/pic05.jpg" alt=""></a>
-          <p>图片说明</p>
-        </li>
-        <li>
-          <a href="#"><img src="images/pic06.jpg" alt=""></a>
-          <p>图片说明</p>
-        </li>
+      <ul class="focus_list" id="imageTpls">
+        <!-- 焦点图 -->
       </ul>
 
       <div class="common_title">
@@ -134,6 +115,16 @@
   </script>
 
   <script src="js/index.js"></script>
+
+  <!-- 焦点图 -->
+  <script type="text/html" id="imageTpl">
+    {{each data}}
+    <li>
+      <a href="/article.html?id={{$value.id}}"><img src="{{$value.cover}}" alt=""></a>
+      <p>{{$value.title}}</p>
+    </li>
+    {{/each}}
+  </script>
 
   <!-- index 代码 -->
   <script>
