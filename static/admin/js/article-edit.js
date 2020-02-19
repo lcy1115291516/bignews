@@ -20,6 +20,7 @@ $.ajax({
     type: 'get',
     url: 'http://localhost:8080/api/v1/admin/article/search',
     data: { id: postid },
+    async: false,
     success: function (result) {
         // console.log(result);//对象
         $.ajax({
@@ -33,7 +34,7 @@ $.ajax({
                 var html = template('postTpl', result);
                 // console.log(html);
                 $("#postBox").html(html);
-
+                tinyMCE.activeEditor.setContent(response.data.content)
             }
         });
 
@@ -56,7 +57,7 @@ $("#postBox").on('submit', '#editForm', function () {
         success: function (result) {
             // console.log(result)
             // location.href = "http://localhost:8080/api/v1/admin/article/article_list.html"
-            location.reload();
+            top.$('iframe').prop('src', 'article_list.html')
         }
     })
     return false;

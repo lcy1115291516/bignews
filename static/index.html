@@ -102,7 +102,7 @@
     <div class="common_news_list">
       <a href="/article.html?id={{$value.id}}" class="list_pic"><img src="{{$value.cover}}" alt=""></a>
       <h4><a href="/article.html?id={{$value.id}}">{{$value.title}}</a></h4>
-      <p>{{$value.intro.substr(0,40)}}
+      <p>{{@$value.intro.substr(0,40)}}
       </p>
       <div class="new_info">
         <span>标签：{{$value.category}}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;阅读(
