@@ -44,9 +44,7 @@
 
   <div class="main_con clearfix">
     <div class="left_con setfr">
-      <div class="breadcrumb">
-        当前位置： <a href="#">首页</a> &gt; <a href="#">科技</a> &gt; 文章详情
-      </div>
+
       <!--  -->
       <div id="articleText"></div>
 
@@ -113,21 +111,15 @@
 
   <!-- 文章展示模板 -->
   <script type="text/html" id="articleTpl">
+    <div class="breadcrumb">
+      当前位置： <a href="index.html">首页</a> &gt; <a href="list.html?categoryID={{data.categoryId}}">{{data.category}}</a> &gt; 文章详情
+    </div>
     <h3 class="article_title">{{data.title}}</h3>
-    <div class="article_info">{{data.author}} 发布于 {{data.date}}&nbsp;&nbsp;&nbsp;分类: 奇趣事&nbsp;&nbsp;&nbsp;阅读:
+    <div class="article_info">{{data.author}} 发布于 {{data.date}}&nbsp;&nbsp;&nbsp;分类:{{data.category}}&nbsp;&nbsp;&nbsp;阅读:
       ({{data.read}})&nbsp;&nbsp;&nbsp;评论: ({{data.comments}})</div>
     <div class="article_con">
 
       <p>{{data.content}}</p>
-
-      <p>{{data.content}}</p>
-
-      <p>{{data.content}}</p>
-
-      <p>{{data.content}}</p>
-
-      <p>{{data.content}}</p>
-
     </div>
     <div class="article_links">
       {{if data.prev}}

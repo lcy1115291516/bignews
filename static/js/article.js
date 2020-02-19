@@ -22,6 +22,7 @@ $.ajax({
     data: { id: id },
     success: function (response) {
         // console.log(response);
+
         var html = template('articleTpl', response);
         // console.log(html);
 
@@ -60,7 +61,7 @@ $.ajax({
     url: 'http://localhost:8080/api/v1/index/get_comment',
     data: { articleId: id },
     success: function (response) {
-        console.log(response);
+        // console.log(response);
         var html = template('textTpl', response);
         // console.log(html);
         $('#textTplm').html(html)
@@ -68,37 +69,16 @@ $.ajax({
 });
 
 function date(e) {
+    // 获取现在时间
     var da = +new Date();
     // console.log(da);
 
     var date = +new Date(e);
     // console.log(date);
     var time = (da - date) / 1000;
-    var d = parseInt((time) / 60 / 60 / 24);
-    // var h = parseInt((time) / 60 / 60 % 24);
-    // var m = Math.ceil((date - da) / 60 % 60);
-    // var s = Math.ceil((date - da) % 60);
-    // console.log(d + '天' + h + '时');
-    // return d + '天' + h + '时'
-    return Math.ceil(d)
+    var d = time / 60 / 60 / 24;
+
+    return Math.floor(d)
 
 }
 
-// function countDown(time) {
-//     var nowTime = +new Date(); // 返回的是当前时间总的毫秒数
-//     // console.log(nowTime);
-//     var inputTime = +new Date(time); // 返回的是用户输入时间总的毫秒数
-//     var times = (inputTime - nowTime) / 1000; // times是剩余时间总的秒数 
-//     var d = parseInt(times / 60 / 60 / 24); // 天
-//     d = d < 10 ? '0' + d : d;
-//     var h = parseInt(times / 60 / 60 % 24); //时
-//     h = h < 10 ? '0' + h : h;
-//     var m = parseInt(times / 60 % 60); // 分
-//     m = m < 10 ? '0' + m : m;
-//     var s = parseInt(times % 60); // 当前的秒
-//     s = s < 10 ? '0' + s : s;
-//     return d + '天' + h + '时' + m + '分' + s + '秒';
-// }
-// console.log(countDown('2019-5-1 18:00:00'));
-// var date = new Date();
-// console.log(date);
