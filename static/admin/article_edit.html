@@ -42,8 +42,9 @@
   <script src="js/tinymce/js/tinymce_setup.js"></script>
   <script src="./js/template-web.js"></script>
 
+  <!-- 文章编辑模板 -->
   <script type="text/html" id="postTpl">
-    <form class="form-horizontal article_form" id="editForm"> 
+    <form class="form-horizontal article_form" id="editForm">
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">文章标题：</label>
         <div class="col-sm-10">
@@ -52,8 +53,8 @@
       </div>
       <div class="form-group">
         <label for="inputPassword3" class="col-sm-2 control-label">文章封面：</label>
-        <div class="col-sm-10">
-          <img src="{{data.cover}}" class="article_cover">
+        <div class="col-sm-10" id="previewBox">
+          <img src="{{data.cover}}" class="article_cover" id="preview">
           <input name="cover" type="file" id="exampleInputFile">
         </div>
       </div>
@@ -62,13 +63,8 @@
         <div class="col-sm-4">
           <select class="form-control category" name="categoryId" id='selCategory'>
             {{each category}}
-            <option 
-            {{if data.categoryId==$value.id}}
-            selected 
-            {{/if}}
-            value="{{$value.id}}"
-           >{{$value.name}}</option>
-           <!-- <option {{data.categoryId==$value.id  ? 'selected' : '' }}  value="{{$value.id}}">类别{{$value.id}}</option> -->
+            <option {{if data.categoryId==$value.id}} selected {{/if}} value="{{$value.id}}">{{$value.name}}</option>
+            <!-- <option {{data.categoryId==$value.id  ? 'selected' : '' }}  value="{{$value.id}}">类别{{$value.id}}</option> -->
             {{/each}}
           </select>
         </div>
@@ -82,7 +78,7 @@
           </select>
         </div>
       </div>
-     
+
       <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">发布时间：</label>
         <div class="col-sm-4">
@@ -114,7 +110,10 @@
   </script>
 
   <!-- 业务逻辑代码 -->
+
   <script src="./js/article-edit.js"> </script>
+  <script src="js/tinymce/js/tinymce/tinymce.min.js"></script>
+  <script src="js/tinymce/js/tinymce_setup.js"></script>
 </body>
 
 </html>

@@ -10,7 +10,7 @@ $.ajax({
         <li>
             <span>{{$value.author.slice(0,1)}}</span>
             <b><em>{{$value.author}}</em> {{$value.date}}说:</b>
-            <strong>{{$value.intro}}</strong>
+            <strong>{{@$value.intro}}</strong>
           </li>
           {{/each}}
         `;

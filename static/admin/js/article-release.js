@@ -53,16 +53,23 @@ $.ajax({
     }
 });
 
-
-
+$('#publishForm').on('submit', function () {
+    return false;
+})
 $("#release").on('click', function () {
+    var content = tinyMCE.activeEditor.getContent();
     var formdata = new FormData($("#publishForm")[0]);
     formdata.append('state', '已发布');
+    formdata.set('content', content);
     getdata(formdata);
 });
 
 $("#draft").on('click', function () {
+    var content = tinyMCE.activeEditor.getContent();
+
     var formdata = new FormData($("#publishForm")[0]);
+    formdata.set('content', content);
+
     getdata(formdata);
 });
 
@@ -77,6 +84,7 @@ function getdata(data) {
             // console.log(result)
             // 刷新页面
             // location.reload();
+            top.$('iframe').prop('src', 'article_list.html')
         }
     })
 };

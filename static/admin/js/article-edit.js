@@ -12,18 +12,23 @@ function getUrlParams(name) {
     }
     return -1;
 }
+
+
 // 获取浏览器地址栏中的id参数
 var postid = getUrlParams('postId');
 // console.log(postid);
+
 // 发送请求
 $.ajax({
     type: 'get',
     url: 'http://localhost:8080/api/v1/admin/article/search',
     data: { id: postid },
+    async: false,
     success: function (result) {
         // console.log(result);//对象
         $.ajax({
             type: 'get',
+            async: false,
             url: 'http://localhost:8080/api/v1/admin/category/list',
             success: function (res) {
                 // console.log(res);
@@ -33,12 +38,15 @@ $.ajax({
                 var html = template('postTpl', result);
                 // console.log(html);
                 $("#postBox").html(html);
-
+                console.log(result.data.content);
+                // tinyMCE.activeEditor.setContent(result.data.content)
             }
         });
 
     }
 });
+
+
 
 // 给表单注册提交事件
 $("#postBox").on('submit', '#editForm', function () {
@@ -56,8 +64,20 @@ $("#postBox").on('submit', '#editForm', function () {
         success: function (result) {
             // console.log(result)
             // location.href = "http://localhost:8080/api/v1/admin/article/article_list.html"
-            location.reload();
+            top.$('iframe').prop('src', 'article_list.html')
         }
     })
     return false;
-})
+});
+
+
+// beforesend: function () {
+//     // 图片预览
+//     $("#previewBox").on('change', '#exampleInputFile', function () {
+//         // alert(1)
+//         var file = this.files[0]
+//         var imgURL = URL.createObjectURL(file);
+//         $("#preview").prop('src', imgURL)
+
+//     });
+// }
