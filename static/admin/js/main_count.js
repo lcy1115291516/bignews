@@ -49,7 +49,7 @@ $.ajax({
 $.ajax({
     url: 'http://localhost:8080/api/v1/admin/data/category',
     success: function (response) {
-        console.log(response);
+        // console.log(response);
         var colorAry = ['#a1488e', '#f6941d', '#003366', '#219167', '#fbb417', '#3366cc', '#cdd541', '#99cc33', '#3f9337', '#239676', '#24998d', '#1f9baa', '#0080ff', '#333399', '#c71585', '#bd2158'];
         var cateAry = [];
         var objAry = [];
@@ -57,7 +57,7 @@ $.ajax({
             objAry.push({ value: response.date[i]['articles'], name: response.date[i]['name'] });
             cateAry.push(response.date[i]['name']);
         }
-        console.log(objAry);
+        // console.log(objAry);
         var oPieopt = {
             title: {
                 top: 10,

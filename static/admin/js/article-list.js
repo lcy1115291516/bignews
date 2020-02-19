@@ -14,7 +14,7 @@
 //     return display;
 // };
 // console.log(pagedisplay(200, 10));
-console.log(top.$('#searchArticle').val());
+// console.log(top.$('#searchArticle').val());
 var newObj = {};
 var postkey = decodeURI(getUrlParams('key'));
 // var nn = top.$('#searchArticle').val();
@@ -36,7 +36,7 @@ $.ajax({
         $("#listBox").html(html);
         var page = template('pagelist', result);
         $("#pageBox").html(page);
-        parseInt
+
     }
 });
 function getpage(p) {
@@ -60,7 +60,7 @@ function getpage(p) {
         url: 'http://localhost:8080/api/v1/admin/article/query',
         data: obj,
         success: function (result) {
-            console.log(result);//对象
+            // console.log(result);//对象
             // pagedisplay(result.data.pages)
             // console.log(result)
             var html = template('listTpl', result);
@@ -84,7 +84,8 @@ $("#listBox").on('click', '.delete', function () {
             url: 'http://localhost:8080/api/v1/admin/article/delete',
             data: { id: postid },
             success: function (result) {
-                console.log(result)
+                // console.log(result)
+                location.reload();
             }
         })
     }

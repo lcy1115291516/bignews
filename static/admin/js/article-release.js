@@ -76,7 +76,8 @@ function getdata(data) {
         success: function (result) {
             // console.log(result)
             // 刷新页面
-            // location.reload();
+            location.reload();
+            // location.href = '/admin/article-list.html'
         }
     })
 };
