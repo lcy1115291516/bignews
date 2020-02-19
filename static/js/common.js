@@ -8,11 +8,7 @@ $.ajax({
         var commentTpl = `
         {{each data}}
         <li>
-<<<<<<< HEAD
-            <span>{{$value.author.substr(0,1)}}</span>
-=======
             <span>{{$value.author.slice(0,1)}}</span>
->>>>>>> e05e94b18a0de59e6112e94d6ce2cf3c1e63a8a2
             <b><em>{{$value.author}}</em> {{$value.date}}说:</b>
             <strong>{{$value.intro}}</strong>
           </li>
