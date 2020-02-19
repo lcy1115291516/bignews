@@ -12,9 +12,12 @@ function getUrlParams(name) {
     }
     return -1;
 }
+
+
 // 获取浏览器地址栏中的id参数
 var postid = getUrlParams('postId');
 // console.log(postid);
+
 // 发送请求
 $.ajax({
     type: 'get',
@@ -41,6 +44,8 @@ $.ajax({
     }
 });
 
+
+
 // 给表单注册提交事件
 $("#postBox").on('submit', '#editForm', function () {
     // alert(1)  给表单添加name属性
@@ -61,4 +66,16 @@ $("#postBox").on('submit', '#editForm', function () {
         }
     })
     return false;
-})
+});
+
+
+// beforesend: function () {
+//     // 图片预览
+//     $("#previewBox").on('change', '#exampleInputFile', function () {
+//         // alert(1)
+//         var file = this.files[0]
+//         var imgURL = URL.createObjectURL(file);
+//         $("#preview").prop('src', imgURL)
+
+//     });
+// }
